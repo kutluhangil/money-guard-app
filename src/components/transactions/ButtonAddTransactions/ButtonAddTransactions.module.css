@@ -1,0 +1,43 @@
+.button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(97.46deg, #FFC727 -16.42%, #9E40BA 97.04%, #7000FF 150.71%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    transition: transform 0.2s ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+    transform: scale(1.1);
+    outline: none;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+@media (min-width: 768px) {
+    .button {
+        bottom: 40px;
+        right: 40px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .button {
+        bottom: 40px;
+        right: 80px;
+    }
+}
