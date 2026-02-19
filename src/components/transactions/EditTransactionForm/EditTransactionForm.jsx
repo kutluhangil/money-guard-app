@@ -39,9 +39,11 @@ const EditTransactionForm = ({ transaction, onClose }) => {
 
     const onSubmit = async (data) => {
         try {
+            // Backend'in beklediği formata uygun olarak tarihi ISO formatına çeviriyoruz
             const payload = {
                 id: transaction.id,
                 ...data,
+                date: data.date.toISOString(),
             };
             await dispatch(updateTransaction(payload)).unwrap();
             onClose(); // Liste Redux update'i gelince otomatik güncellenecek

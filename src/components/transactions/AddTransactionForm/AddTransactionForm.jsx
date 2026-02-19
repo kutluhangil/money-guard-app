@@ -64,8 +64,8 @@ const AddTransactionForm = ({ onClose }) => {
 
     const onSubmit = async (data) => {
         try {
-            // Gerekirse backend için tarihi ve tipi burada formatla
-            const payload = { ...data };
+            // Backend'in beklediği formata uygun olarak tarihi ISO formatına çeviriyoruz
+            const payload = { ...data, date: data.date.toISOString() };
             await dispatch(addTransaction(payload)).unwrap();
             // Başarılıysa -> modalı kapat ve listeyi yenile
             onClose();
