@@ -1,0 +1,50 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { instance } from '../../api/axiosConfig';
+
+export const fetchTransactions = createAsyncThunk(
+  'transactions/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/transactions');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addTransaction = createAsyncThunk(
+  'transactions/addTransaction',
+  async (transactionData, thunkAPI) => {
+    try {
+      const { data } = await instance.post('/transactions', transactionData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateTransaction = createAsyncThunk(
+  'transactions/updateTransaction',
+  async ({ id, ...transactionData }, thunkAPI) => {
+    try {
+      const { data } = await instance.patch(`/transactions/${id}`, transactionData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchTransactionCategories = createAsyncThunk(
+  'transactions/fetchCategories',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/transaction-categories');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
