@@ -1,0 +1,70 @@
+import { createSlice } from '@reduxjs/toolkit';
+import {
+    fetchTransactions,
+    addTransaction,
+    updateTransaction,
+    fetchTransactionCategories,
+} from './operations';
+
+const initialState = {
+    items: [],
+    categories: [],
+    isLoading: false,
+    error: null,
+};
+
+const handlePending = (state) => {
+    state.isLoading = true;
+    state.error = null;
+};
+
+const handleRejected = (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+};
+
+const transactionsSlice = createSlice({
+    name: 'transactions',
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            // İşlemleri getir
+            .addCase(fetchTransactions.pending, handlePending)
+            .addCase(fetchTransactions.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.items = action.payload;
+            })
+            .addCase(fetchTransactions.rejected, handleRejected)
+            // İşlem ekle
+            .addCase(addTransaction.pending, handlePending)
+            .addCase(addTransaction.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.items.push(action.payload);
+            })
+            .addCase(addTransaction.rejected, handleRejected)
+            // İşlem güncelle
+            .addCase(updateTransaction.pending, handlePending)
+            .addCase(updateTransaction.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                const index = state.items.findIndex((item) => item.id === action.payload.id);
+                if (index !== -1) {
+                    state.items[index] = action.payload;
+                }
+            })
+            .addCase(updateTransaction.rejected, handleRejected)
+            // Kategorileri getir
+            .addCase(fetchTransactionCategories.pending, handlePending)
+            .addCase(fetchTransactionCategories.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.categories = action.payload;
+            })
+            .addCase(fetchTransactionCategories.rejected, handleRejected);
+    },
+});
+
+export const transactionsReducer = transactionsSlice.reducer;
