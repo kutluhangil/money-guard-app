@@ -16,7 +16,7 @@ const Navigation = () => {
             }
             end
           >
-            <Icon id="icon-icon-home" name="home" className={css.navIcon} />
+            <Icon name="icon-icon-home" className={css.navIcon} />
             <span className={css.navText}>Home</span>
           </NavLink>
         </li>
@@ -29,11 +29,7 @@ const Navigation = () => {
               isActive ? css.active : css.navButton
             }
           >
-            <Icon
-              id="icon-icon-statistics"
-              name="statistics"
-              className={css.navIcon}
-            />
+            <Icon name="icon-icon-statistics" className={css.navIcon} />
             <span className={css.navText}>Statistics</span>
           </NavLink>
         </li>
@@ -46,11 +42,7 @@ const Navigation = () => {
               isActive ? css.active : css.navButton
             }
           >
-            <Icon
-              id="icon-icon-currency"
-              name="currency"
-              className={css.navIcon}
-            />
+            <Icon name="icon-icon-currency" className={css.navIcon} />
             {/* Mobil için sadece ikon, metin yok */}
           </NavLink>
         </li>
@@ -58,3 +50,5 @@ const Navigation = () => {
     </nav>
   );
 };
+
+export default Navigation;
