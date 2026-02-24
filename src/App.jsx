@@ -19,9 +19,7 @@ function App() {
       <Loader />
       <Suspense fallback={<Loader />}>
         <Routes>
-          {/* Convenience redirects so users can open / or /home directly */}
-          <Route path="/" element={<Navigate to="/dashboard/home" replace />} />
-          <Route path="/home" element={<Navigate to="/dashboard/home" replace />} />
+          {/* Dashboard routes moved to top-level so nav paths are /home, /statistics, /currency */}
           <Route
             path="/login"
             element={
@@ -40,16 +38,17 @@ function App() {
             }
           />
 
-          {/* Dashboard altındaki sayfalar (Home, Statistics vb.) */}
+          {/* Dashboard top-level layout: wrap home/statistics/currency with PrivateRoute */}
           <Route
-            path="/dashboard"
+            path="/"
             element={
               <PrivateRoute>
                 <DashboardPage />
               </PrivateRoute>
             }
           >
-            <Route index element={<HomeTab />} />
+            {/* Default to /home */}
+            <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<HomeTab />} />
             <Route path="statistics" element={<StatisticsTab />} />
 
