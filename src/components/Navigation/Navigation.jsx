@@ -10,7 +10,7 @@ const Navigation = () => {
         {/* Home */}
         <li className={css.navItem}>
           <NavLink
-            to="/dashboard/home"
+            to="/home"
             className={({ isActive }) =>
               isActive ? css.active : css.navButton
             }
@@ -24,7 +24,7 @@ const Navigation = () => {
         {/* Statistics */}
         <li className={css.navItem}>
           <NavLink
-            to="/dashboard/statistics"
+            to="/statistics"
             className={({ isActive }) =>
               isActive ? css.active : css.navButton
             }
@@ -37,7 +37,7 @@ const Navigation = () => {
         {/* Currency (sadece mobil) */}
         <li className={`${css.navItem} ${css.mobileOnly}`}>
           <NavLink
-            to="/dashboard/currency"
+            to="/currency"
             className={({ isActive }) =>
               isActive ? css.active : css.navButton
             }
