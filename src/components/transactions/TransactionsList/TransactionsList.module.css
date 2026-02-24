@@ -1,0 +1,22 @@
+.theadRow {
+  background-color: #523b7e99;
+  color: white;
+}
+
+.th {
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}

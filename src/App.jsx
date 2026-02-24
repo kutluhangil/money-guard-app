@@ -4,7 +4,7 @@ import Loader from "./components/Loader/Loader";
 import PrivateRoute from "./components/Routes/PrivateRoute";
 import PublicRoute from "./components/Routes/PublicRoute";
 
-// Lazy imports
+// Sayfaların Lazy Load ile yüklenmesi (Performans için)
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage/DashboardPage"));
@@ -15,43 +15,52 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            <PublicRoute restricted>
-              <LoginPage />
-            </PublicRoute>
-          }
-        />
+    <>
+      <Loader />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          {/* Convenience redirects so users can open / or /home directly */}
+          <Route path="/" element={<Navigate to="/dashboard/home" replace />} />
+          <Route path="/home" element={<Navigate to="/dashboard/home" replace />} />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
 
-        <Route
-          path="/register"
-          element={
-            <PublicRoute restricted>
-              <RegisterPage />
-            </PublicRoute>
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
 
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <DashboardPage />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<Navigate to="home" replace />} />
-          <Route path="home" element={<HomeTab />} />
-          <Route path="statistics" element={<StatisticsTab />} />
-          <Route path="currency" element={<CurrencyTab />} />
-        </Route>
+          {/* Dashboard altındaki sayfalar (Home, Statistics vb.) */}
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<HomeTab />} />
+            <Route path="home" element={<HomeTab />} />
+            <Route path="statistics" element={<StatisticsTab />} />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Suspense>
+            {/* Sadece Mobil için */}
+            <Route path="currency" element={<CurrencyTab />} />
+          </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 

@@ -66,3 +66,15 @@ export const transactionsSummary = createAsyncThunk(
     }
   },
 );
+
+export const deleteTransaction = createAsyncThunk(
+  'transactions/deleteTransaction',
+  async (id, thunkAPI) => {
+    try {
+      await instance.delete(`/transactions/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
