@@ -1,0 +1,218 @@
+/* Mobile-first: key-value card layout */
+.tr {
+  display: block;
+  background: var(--color-bg-glass);
+  margin: 12px 0;
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  border-left: 5px solid var(--color-accent-coral);
+}
+
+.income {
+  border-left-color: var(--color-accent-teal);
+}
+
+.expense {
+  border-left-color: var(--color-accent-coral);
+}
+
+.td {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--color-main-text);
+}
+
+.mobileLabel {
+  display: inline-block;
+  min-width: 70px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.date { 
+  font-size: 14px; 
+  color: var(--color-muted);
+}
+
+.type { 
+  font-weight: 600; 
+  display: inline-block;
+}
+
+.comment { 
+  color: var(--color-muted); 
+  font-size: 13px; 
+}
+
+.sum { 
+  font-weight: 700; 
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.typeIncome { 
+  color: var(--color-accent-teal); 
+}
+
+.typeExpense { 
+  color: var(--color-accent-coral); 
+}
+
+.actions { 
+  display: flex; 
+  gap: 8px; 
+  margin-top: 10px; 
+  justify-content: flex-end;
+}
+
+.iconButton { 
+  background: transparent; 
+  border: none; 
+  color: var(--color-muted); 
+  cursor: pointer;
+}
+
+.deleteButton { 
+  background: rgba(255,255,255,0.06); 
+  border-radius: 8px; 
+  padding: 6px 10px; 
+  border: none;
+  cursor: pointer;
+}
+
+.editLabel {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+/* Tablet & Desktop: table row layout - RESPONSIVE */
+@media (min-width: 768px) {
+  .tr {
+    display: grid;
+    grid-template-columns: minmax(80px, 0.8fr) minmax(60px, 0.6fr) minmax(120px, 1.2fr) minmax(100px, 2fr) minmax(80px, 0.8fr) minmax(60px, 0.6fr);
+    gap: 8px;
+    padding: 12px 8px;
+    align-items: center;
+    background: transparent;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .td { 
+    display: block; 
+    padding: 0 4px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .mobileLabel { 
+    display: none; 
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  .type {
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .comment {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .sum {
+    text-align: right;
+    justify-content: flex-end;
+    flex: 0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .actions { 
+    margin-top: 0;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .iconButton {
+    padding: 2px 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 12px;
+  }
+
+  .iconButton:hover {
+    color: white;
+  }
+}
+
+/* Desktop - RESPONSIVE */
+@media (min-width: 1280px) {
+  .tr {
+    display: grid;
+    grid-template-columns: minmax(100px, 0.8fr) minmax(70px, 0.6fr) minmax(140px, 1.2fr) minmax(150px, 2fr) minmax(100px, 0.8fr) minmax(80px, 0.6fr);
+    gap: 16px;
+    padding: 16px 24px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    background: transparent;
+    height: auto;
+    min-height: 60px;
+  }
+
+  .td { 
+    padding: 0;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .comment { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .actions { 
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .iconButton {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+}
