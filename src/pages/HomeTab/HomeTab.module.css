@@ -1,19 +1,15 @@
-.homeTab {
-  padding: 20px;
-}
+.homeTab { padding: 20px; }
 
-.loading {
-  text-align: center;
-  padding: 60px 20px;
-  font-size: 1.3rem;
-  color: #666;
-}
+.loading { text-align: center; padding: 60px 20px; font-size: 1.3rem; color: var(--color-text-secondary); }
 
 .error {
   text-align: center;
-  padding: 60px 20px;
-  font-size: 1.3rem;
-  color: #f44336;
-  background: #ffebee;
+  padding: 24px 20px;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  background: rgba(255, 77, 109, 0.08);
   border-radius: 12px;
 }
+
+/* Main transactions table wrapper spacing */
+.transactions-section { margin-top: 40px; }

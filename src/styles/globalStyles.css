@@ -35,6 +35,14 @@ html, body, #root {
   height: 100%;
 }
 
+/* Use border-box everywhere to avoid width calculation surprises */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Ensure root elements occupy full width and prevent horizontal overflow */
+html, body, #root { width: 100%; }
+
 body {
   margin: 0;
   font-family: var(--font-main);
@@ -44,6 +52,13 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* prevent horizontal scroll globally (fixes many 100vw issues) */
+  overflow-x: hidden;
+}
+
+/* Prevent horizontal page shifting caused by elements using 100vw or overflow */
+body {
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -88,5 +103,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 1280px) {
-  .container { max-width: 1280px; margin: 0 auto; padding: 40px; }
+  .container { max-width: var(--container-width); margin: 0 auto; padding: 40px; }
 }

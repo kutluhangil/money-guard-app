@@ -1,17 +1,19 @@
-/* Balance card (alias names to match component) */
+/* Mobile-first: centered balance card */
 .balanceContainer,
 .balanceCard {
-  padding: 16px 20px;
-  width: 300px;
+  background: var(--color-bg-glass);
+  border-radius: 30px;
+  padding: 16px 40px;
+  width: 100%;
+  max-width: 280px;
   min-height: 100px;
-  background: var(--color-card-bg);
-  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .title {
@@ -20,6 +22,7 @@
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.3px;
+  text-align: center;
 }
 
 .value {
@@ -28,6 +31,7 @@
   color: #ffffff;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.5px;
+  text-align: center;
 }
 
 .positive {
@@ -46,29 +50,48 @@
   text-align: center;
 }
 
-/* Responsive */
+/* Tablet */
 @media (min-width: 768px) {
   .balanceContainer {
-    width: 336px;
+    width: 100%;
+    max-width: 395px;
     min-height: 100px;
     padding: 18px 24px;
+    margin: 0;
+    border-radius: 12px;
+    background: rgba(82, 59, 126, 0.3);
+  }
+
+  .title {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .value {
+    font-size: 32px;
+    text-align: left;
   }
 }
 
+/* Desktop */
 @media (min-width: 1280px) {
   .balanceContainer {
-    width: 480px;
-    background: rgba(82, 59, 126, 0.65);
-    box-shadow: 2px 12px 20px 0 rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: none;
+    background: rgba(82, 59, 126, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     padding: 24px 32px;
+    margin: 0;
   }
 
   .title {
     font-size: 15px;
+    text-align: left;
   }
 
   .value {
     font-size: 36px;
+    text-align: left;
   }
 }

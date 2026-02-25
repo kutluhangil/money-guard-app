@@ -6,6 +6,12 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  position: sticky; /* stay at top */
+  top: 0;
+  z-index: 1200;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 /* Sol Taraf: Logo ve İsim */
