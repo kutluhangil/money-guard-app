@@ -71,3 +71,8 @@
 @media (min-width: 1280px) {
   .td { padding: 16px; }
 }
+
+.editLabel {
+  color: var(--color-muted);
+  font-size: 13px;
+}

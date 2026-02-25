@@ -1,8 +1,10 @@
-.balanceContainer {
+/* Balance card (alias names to match component) */
+.balanceContainer,
+.balanceCard {
   padding: 16px 20px;
   width: 300px;
   min-height: 100px;
-  background: rgba(82, 59, 126, 0.6);
+  background: var(--color-card-bg);
   box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   display: flex;
@@ -36,7 +38,7 @@
   color: #f87171;
 }
 
-.isLoading {
+.loading {
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   font-style: italic;

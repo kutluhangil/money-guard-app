@@ -24,18 +24,22 @@
   padding: 16px;
 }
 
-.sidebar {
-  background: rgba(255, 255, 255, 0.1);
+/* leftSidebar used in JSX; alias to .sidebar */
+.sidebar,
+.leftSidebar {
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 16px;
 }
 
+/* main used in JSX; alias to .mainArea */
+.main,
 .mainArea {
   flex: 1;
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent; /* keep transparent, inner cards have glass */
   border-radius: 16px;
-  padding: 20px;
+  padding: 12px 0;
 }
 
 .fabButton {
