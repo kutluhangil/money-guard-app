@@ -8,7 +8,8 @@ const StatisticsTab = () => {
     <div>
       <div className={css.container}>
         <div className={css.area}>
-          <div>
+          {/* Chart only visible on mobile - hidden on tablet/desktop */}
+          <div className={css.chartMobile}>
             <Chart />
           </div>
           <div>

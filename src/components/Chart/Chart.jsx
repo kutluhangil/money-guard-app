@@ -22,7 +22,7 @@ function Chart() {
   const items = useSelector((state) => state.transactions?.items);
   useEffect(() => {
     console.log(items);
-  }, []);
+  }, [items]);
 
   const hasData = transactionsSummaryData.expenseSummary < 0;
 
