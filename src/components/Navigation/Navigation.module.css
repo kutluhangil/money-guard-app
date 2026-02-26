@@ -1,6 +1,7 @@
 /* ─────────────────────────────────────────────
    Mobile-first navigation (horizontal bottom bar)
    ───────────────────────────────────────────── */
+
 .navButton {
   text-decoration: none;
 }
@@ -12,7 +13,7 @@
 .navContainer {
   margin: 0;
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: visible;
 }
 
 .navList {
@@ -25,6 +26,7 @@
   padding: 0;
   margin: 0;
   flex-wrap: wrap;
+  overflow: visible;
 }
 
 .navItem {
@@ -41,8 +43,10 @@
   align-items: center;
   justify-content: center;
   color: rgba(255, 255, 255, 0.55);
-  transition: color 0.18s, transform 0.12s;
+  transition: color 0.18s ease, transform 0.18s ease, filter 0.2s ease;
   border-radius: 12px;
+  position: relative;
+  will-change: transform;
 }
 
 .navButton.active {
@@ -83,21 +87,30 @@
   display: block;
   flex-shrink: 0;
 }
+
+/* Hover */
+.navButton:hover {
+  transform: translateY(-2px) scale(1.05);
+  color: #fff;
+  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.25));
+}
+
 /* ───────────────────────────────
-   Tablet & up → vertical + labels
+   Tablet & Desktop → Vertical + Left aligned
    ─────────────────────────────── */
+
 @media (min-width: 768px) {
   .navList {
     flex-direction: column;
-    gap: 4px;
-    align-items: stretch;
+    align-items: flex-start; /* SOL HİZALI */
     justify-content: flex-start;
+    gap: 8px; /* fazla açılmasın */
   }
 
   .navButton {
     justify-content: flex-start;
-    padding: 8px 16px;
-    width: auto;
+    width: auto; /* genişlemesin */
+    padding: 10px 16px;
     border-radius: 8px;
   }
 
@@ -108,7 +121,7 @@
   .navText {
     display: inline;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: white;
   }
 
@@ -116,55 +129,35 @@
     display: none;
   }
 
+  /* Tablet ve Desktop aynı ikon boyutu */
   .navIcon,
   .navIcon svg,
-  .navIcon :where(svg) {
-    width: 24px;
-    height: 24px;
+  .navIcon :where(svg),
+  .navIcon .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navIcon {
+    margin-right: 12px;
   }
 }
 
 /* ───────────────────────────────
-   Desktop (wide) → daha geniş padding, farklı ikon boyutu
+   Desktop (1280+) → Sadece ufak stil farkı
    ─────────────────────────────── */
+
 @media (min-width: 1280px) {
-  .navList {
-    gap: clamp(12px, 2vw, 16px);
-    padding-left: 0;
-  }
-
   .navButton {
-    width: 100%;
-    padding: clamp(12px, 1.5vw, 16px) clamp(16px, 2vw, 20px);
-    transition: all 0.2s ease;
-  }
-
-  .navButton:hover {
-    background: rgba(255, 255, 255, 0.08);
+    padding: 12px 18px; /* biraz daha rahat ama aynı hizalı */
   }
 
   .navButton.active {
     background: rgba(255, 255, 255, 0.05);
-    font-weight: 700;
-  }
-
-  .navIcon {
-    margin-right: clamp(12px, 1.5vw, 16px);
-    opacity: 0.7;
-    transition: all 0.2s ease;
-  }
-
-  .navIcon .icon {
-    width: clamp(22px, 3vw, 26px);
-    height: clamp(22px, 3vw, 26px);
+    font-weight: 600;
   }
 
   .navText {
-    font-size: clamp(16px, 2vw, 18px);
-    font-weight: 400;
-  }
-
-  .navButton.active .navText {
-    font-weight: 700;
+    font-size: 17px;
   }
 }
