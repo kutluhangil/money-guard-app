@@ -60,6 +60,20 @@
   color: #FBFBFB;
   padding: 0;
 }
+/* Tarayıcının otomatik doldurma (autofill) stilini ezmek için */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active {
+  /* Arka plan renginin beyaz olmasını engellemek için geçişi sonsuza kadar geciktirir */
+  transition: background-color 5000s ease-in-out 0s;
+  
+  /* Otomatik doldurulan metnin rengini beyaz yapar */
+  -webkit-text-fill-color: #ffffff !important;
+  
+  /* Arka planı tamamen şeffaf yapar */
+  background-color: transparent !important;
+}
 
 .input::placeholder {
   color: rgba(255, 255, 255, 0.60);
