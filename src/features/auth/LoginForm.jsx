@@ -53,46 +53,48 @@ export default function LoginForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.logoContainer}>
-      {/* Sarı Logo İkonu */}
-      <Icon name="icon-icon-logo" width={32} height={32} /> 
-      <h2 className={styles.logoText}>Money Guard</h2>
-    </div>
+        <Icon name="icon-icon-logo" width={28} height={28} /> 
+        <h2 className={styles.logoText}>Money Guard</h2>
+      </div>
 
       {/* Email Alanı */}
       <div className={styles.inputWrapper}>
-      <Icon name="icon-icon-email" width={24} height={24} className={styles.inputIcon} />
-      <input 
-        className={styles.input} 
-        placeholder="E-mail" 
-        {...register('email')} 
-      />
-    </div>
-      {/* Yup'tan gelen Email hatası varsa göster (Geçersizse istek atılmaz) */}
+        <Icon name="icon-icon-email" width={24} height={24} className={styles.inputIcon} aria-hidden="true" />
+        <input 
+          className={styles.input} 
+          type="email"
+          placeholder="E-mail"
+          autoComplete="email"
+          aria-label="Email address"
+          {...register('email')} 
+        />
+      </div>
       {errors.email && <p className={styles.errorText}>{errors.email.message}</p>}
 
       {/* Şifre Alanı */}
       <div className={styles.inputWrapper}>
-      <Icon name="icon-icon-lock" width={24} height={24} className={styles.inputIcon} />
-      <input 
-        type="password" 
-        className={styles.input} 
-        placeholder="Password" 
-        {...register('password')} 
-      />
-    </div>
-      {/* Yup'tan gelen Password hatası varsa göster */}
+        <Icon name="icon-icon-lock" width={24} height={24} className={styles.inputIcon} aria-hidden="true" />
+        <input 
+          type="password" 
+          className={styles.input} 
+          placeholder="Password"
+          autoComplete="current-password"
+          aria-label="Password"
+          {...register('password')} 
+        />
+      </div>
       {errors.password && <p className={styles.errorText}>{errors.password.message}</p>}
 
       {/* Butonlar */}
       <button 
         type="submit" 
         className={styles.buttonPrimary} 
-        disabled={isSubmitting} // İstek atılırken butona tekrar tıklanmasını engeller
+        disabled={isSubmitting}
       >
         {isSubmitting ? 'GİRİŞ YAPILIYOR...' : 'LOG IN'}
       </button>
       
-      {/* Kayıt Ol Sayfasına Yönlendirme - Link bileşeni kullanıldı */}
+      {/* Kayıt Ol Sayfasına Yönlendirme */}
       <Link 
         to="/register" 
         className={styles.buttonSecondary} 

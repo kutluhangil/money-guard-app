@@ -1,59 +1,131 @@
+/* ═══════════════════════════════════════ */
+/* LOGIN PAGE — Glassmorphism Dark Theme  */
+/* Mobile First Responsive                 */
+/* ═══════════════════════════════════════ */
+
 /* 📱 1. MOBİL TASARIM (Varsayılan Düzen) */
 .wrapper {
+  position: relative;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background: linear-gradient(to bottom, #1a1235 0%, #2e1f5e 100%);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  padding: 24px 16px;
+  background: var(--color-bg-base);
   overflow: hidden;
-  position: relative;
 }
 
+/* ── BACKGROUND GLOW EFFECTS ── */
+.bgGlow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgGlow1 {
+  width: 713px;
+  height: 713px;
+  left: -219px;
+  top: -254px;
+  background: radial-gradient(circle, rgba(100, 60, 180, 0.55) 0%, transparent 70%);
+}
+
+.bgGlow2 {
+  width: 284px;
+  height: 284px;
+  left: -116px;
+  top: -58px;
+  background: radial-gradient(circle, rgba(180, 60, 150, 0.50) 0%, transparent 65%);
+}
+
+.bgGlow3 {
+  width: 595px;
+  height: 595px;
+  right: -120px;
+  top: 294px;
+  background: radial-gradient(circle, rgba(50, 80, 200, 0.45) 0%, transparent 70%);
+}
+
+.bgGlow4 {
+  width: 284px;
+  height: 284px;
+  right: 10px;
+  top: 196px;
+  background: radial-gradient(circle, rgba(140, 50, 200, 0.40) 0%, transparent 60%);
+}
+
+.bgGlow5 {
+  width: 220px;
+  height: 220px;
+  right: 100px;
+  top: 571px;
+  background: radial-gradient(circle, rgba(80, 40, 160, 0.35) 0%, transparent 60%);
+}
+
+/* ── GLASSMORPHISM CARD ── */
 .card {
-  width: 90%;
-  max-width: 450px;
-  border-radius: 16px;
-  padding: 40px 32px;
-  color: #ffffff; 
-  z-index: 2;
   position: relative;
+  z-index: 1;
+  width: calc(100% - 32px);
+  max-width: 533px;
+  
+  /* Glassmorphism Effect */
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  
+  /* Border & Shadow */
+  border: 1px solid var(--color-glass-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-form);
+  
+  /* Padding */
+  padding: 32px 24px;
+  
+  /* Flex Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* 💊 2. TABLET TASARIM (768px ve üzeri) */
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .card {
+    background: rgba(20, 10, 40, 0.85);
+  }
+}
+
+/* � 2. TABLET TASARIM (768px ve üzeri) */
 @media screen and (min-width: 768px) {
   .wrapper {
     padding: 40px;
-    background: 
-      linear-gradient(to bottom, #1a1235 0%, #2e1f5e 100%);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
   }
+  
   .card {
-    max-width: 500px;
-    padding: 40px 20px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    width: 480px;
+    padding: 40px 48px;
+  }
+  
+  .bgGlow {
+    filter: blur(60px);
   }
 }
 
-/* 💻 3. MASAÜSTÜ TASARIM (1280px ve üzeri) */
-@media screen and (min-width: 1280px) {
+/* 💻 3. MASAÜSTÜ TASARIM (1200px ve üzeri) */
+@media screen and (min-width: 1200px) {
   .wrapper {
     padding: 60px;
-    background: 
-      linear-gradient(to bottom, #1a1235 0%, #2e1f5e 100%);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
   }
+  
   .card {
-    max-width: 550px;
+    width: 533px;
+    min-height: 570px;
+    padding: 40px 62px;
+  }
+  
+  .bgGlow {
+    filter: blur(80px);
   }
 }

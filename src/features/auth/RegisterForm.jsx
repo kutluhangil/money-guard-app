@@ -73,63 +73,70 @@ export default function RegisterForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.logoContainer}>
-  <Icon name="icon-icon-logo" className={styles.logoIcon} />
-  <h2 className={styles.logoText}>Money Guard</h2>
-</div>
+        <Icon name="icon-icon-logo" width={28} height={28} />
+        <h2 className={styles.logoText}>Money Guard</h2>
+      </div>
 
       {/* Name Alanı */}
       <div className={styles.inputWrapper}>
-  <Icon name="icon-icon-user" className={styles.inputIcon} />
-  <input 
-    className={styles.input} 
-    placeholder="Name" 
-    {...register('name')} 
-  />
-</div>
+        <Icon name="icon-icon-user" width={24} height={24} className={styles.icon} />
+        <input 
+          className={styles.input} 
+          placeholder="Name"
+          autoComplete="name"
+          {...register('name')} 
+        />
+      </div>
       {errors.name && <p className={styles.errorText}>{errors.name.message}</p>}
 
       {/* Email Alanı */}
       <div className={styles.inputWrapper}>
-  <Icon name="icon-icon-email" className={styles.inputIcon} />
-  <input 
-    className={styles.input} 
-    placeholder="E-mail" 
-    {...register('email')} 
-  />
-</div>
+        <Icon name="icon-icon-email" width={24} height={24} className={styles.icon} />
+        <input 
+          className={styles.input} 
+          placeholder="E-mail"
+          type="email"
+          autoComplete="email"
+          {...register('email')} 
+        />
+      </div>
       {errors.email && <p className={styles.errorText}>{errors.email.message}</p>}
 
       {/* Şifre Alanı */}
       <div className={styles.inputWrapper}>
-  <Icon name="icon-icon-lock" className={styles.inputIcon} />
-  <input 
-    type="password" 
-    className={styles.input} 
-    placeholder="Password" 
-    {...register('password')} 
-  />
-</div>
+        <Icon name="icon-icon-lock" width={24} height={24} className={styles.icon} />
+        <input 
+          type="password" 
+          className={styles.input} 
+          placeholder="Password"
+          autoComplete="new-password"
+          {...register('password')} 
+        />
+      </div>
       {errors.password && <p className={styles.errorText}>{errors.password.message}</p>}
 
       {/* Şifre Tekrar Alanı */}
       <div className={styles.inputWrapper}>
-  <Icon name="icon-icon-lock" className={styles.inputIcon} />
-  <input 
-    type="password" 
-    className={styles.input} 
-    placeholder="Confirm password" 
-    {...register('confirmPassword')} 
-  />
-</div>
+        <Icon name="icon-icon-lock" width={24} height={24} className={styles.icon} />
+        <input 
+          type="password" 
+          className={styles.input} 
+          placeholder="Confirm password"
+          autoComplete="new-password"
+          {...register('confirmPassword')} 
+        />
+      </div>
       {errors.confirmPassword && <p className={styles.errorText}>{errors.confirmPassword.message}</p>}
 
       {/* Password Strength Bar */}
-      <PasswordStrengthBar 
-        password={passwordValue}
-        minLength={6}
-        scoreWords={['Weak', 'Okay', 'Good', 'Strong', 'Very Strong']}
-        shortScoreWord="Too short"
-      />
+      <div className={styles.passwordStrengthWrapper}>
+        <PasswordStrengthBar 
+          password={passwordValue}
+          minLength={6}
+          scoreWords={['Weak', 'Okay', 'Good', 'Strong', 'Very Strong']}
+          shortScoreWord="Too short"
+        />
+      </div>
 
       {/* Register Butonu */}
       <button 
