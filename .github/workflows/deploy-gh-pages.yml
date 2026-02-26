@@ -45,6 +45,15 @@ jobs:
             echo "dist or dist/index.html missing - skipping 404 fallback"
           fi
 
+      - name: Debug: list dist contents
+        run: |
+          echo "Dist contents:";
+          ls -la dist || true;
+          echo "-- head of dist/index.html --";
+          head -n 20 dist/index.html || true;
+          echo "-- head of dist/404.html --";
+          head -n 20 dist/404.html || true;
+
       - name: Upload Pages artifact
         # Use v3 to avoid deprecated actions/upload-artifact v3 dependency
         uses: actions/upload-pages-artifact@v3
