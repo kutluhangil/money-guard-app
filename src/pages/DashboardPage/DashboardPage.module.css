@@ -223,7 +223,7 @@
     border-radius: 12px;
     padding: clamp(16px, 2vw, 24px);
     position: relative;
-    top: -390px;
+    top: -210px;
     height: auto;
     min-width: 0;
     grid-area: unset;
