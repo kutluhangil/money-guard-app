@@ -5,7 +5,8 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(to bottom, #1a1235 0%, #2e1f5e 100%);
+  background-image: 
+    url('/public/images/mobilebackground.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -27,10 +28,20 @@
 @media screen and (min-width: 768px) {
   .wrapper {
     padding: 40px;
-    background: 
-      linear-gradient(to bottom, #1a1235 0%, #2e1f5e 100%);
-    background-size: cover;
-    background-position: center center;
+    background-image:
+    url('/public/images/coins-tablet1.webp'), 
+    linear-gradient(45deg, rgba(20, 0, 40, 0.9) 0%, transparent 60%), /* 2. Sol Alt Gradient */
+      linear-gradient(225deg, rgba(20, 0, 40, 0.9) 0%, transparent 60%),
+      url('/public/images/coins-tablet1.webp'),
+      url('/public/images/mobilebackground.jpg');
+    
+    /* Görsellerin Konumları (Tasarımınıza göre ayarlayın) */
+    background-position: left center, right center, center, center, center center;
+    
+    /* Görsellerin Boyutları (Arka planı kapla, paraları orijinal boyutta bırak) */
+    background-size: contain, cover, cover, cover, cover;
+    
+    /* Tekrar etme */
     background-repeat: no-repeat;
   }
   .card {
@@ -47,10 +58,20 @@
 @media screen and (min-width: 1280px) {
   .wrapper {
     padding: 60px;
-    background: 
-      linear-gradient(to bottom, #1a1235 0%, #2e1f5e 100%);
-    background-size: cover;
-    background-position: center center;
+    background-image: 
+      url('/public/images/coins-render1.webp'),
+      url('/public/images/coins-render2.webp'),
+      linear-gradient(45deg, rgba(20, 0, 40, 0.9) 0%, transparent 60%), /* 2. Sol Alt Gradient */
+      linear-gradient(225deg, rgba(20, 0, 40, 0.9) 0%, transparent 60%),
+      url('/public/images/mobilebackground.jpg');
+
+    
+    /* Görsellerin Konumları (Tasarımınıza göre ayarlayın) */
+    background-position: left center, right center, center, center, center center;
+    /* Görsellerin Boyutları (Arka planı kapla, paraları orijinal boyutta bırak) */
+    background-size: contain, contain, cover, cover, cover;
+    
+    /* Tekrar etme */
     background-repeat: no-repeat;
   }
   .card {
