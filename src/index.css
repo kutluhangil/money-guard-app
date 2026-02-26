@@ -1,0 +1,65 @@
+/* ═══════════════════════════════════════ */
+/* MONEY GUARD — GLOBAL DESIGN SYSTEM      */
+/* Mobile First Responsive                 */
+/* ═══════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+  /* Ana Arka Plan */
+  --color-bg-base:            #101010;
+  --color-bg-deep:            #0D0D0D;
+
+  /* Gradient Renkleri */
+  --color-grad-yellow:        #FFC727;
+  --color-grad-magenta:       #9E40BA;
+  --color-grad-purple:        #7000FF;
+
+  /* Form & Glass */
+  --color-glass-bg:           rgba(255, 255, 255, 0.10);
+  --color-glass-border:       rgba(255, 255, 255, 0.15);
+
+  /* Metin Renkleri */
+  --color-text-primary:       #FBFBFB;
+  --color-text-secondary:     rgba(255, 255, 255, 0.60);
+  --color-text-muted:         rgba(255, 255, 255, 0.40);
+
+  /* Buton Renkleri */
+  --color-btn-register-bg:     #FCFCFC;
+  --color-btn-register-border: #4A56E2;
+  --color-btn-register-text:   #623F8B;
+
+  /* Input Underline */
+  --color-input-line:     rgba(255, 255, 255, 0.50);
+
+  /* Gradient Definitions */
+  --color-btn-gradient:       linear-gradient(125.4deg, #FFC727 16.42%, #9E40BA 97.04%, #7000FF 150.71%);
+  
+  /* Shadows */
+  --shadow-btn:               1px 9px 15px 0px rgba(0, 0, 0, 0.20);
+  --shadow-form:              0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+
+  /* Glow / Ellipse renkleri (arka plan dekor) */
+  --color-glow-purple:    rgba(100, 60, 180, 0.50);
+  --color-glow-blue:      rgba(50,  80, 200, 0.40);
+  --color-glow-pink:      rgba(180, 60, 150, 0.35);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--color-bg-base);
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

@@ -97,35 +97,34 @@
 }
 
 /* Tablet: 2-column top row (Nav+Balance | Currency), Transactions full-width bottom */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1279px) {
   .container {
     display: grid;
-    grid-template-columns: minmax(200px, 1fr) minmax(180px, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: minmax(300px, 1fr) minmax(280px, 1fr);
+    grid-template-rows: auto 1fr;
     grid-template-areas:
       "leftcol currencySection"
       "main main";
-    gap: clamp(16px, 4vw, 24px);
-    padding: clamp(16px, 3vw, 32px);
+    gap: clamp(20px, 3vw, 32px);
+    padding: clamp(20px, 3vw, 40px);
     align-items: start;
     max-width: none;
     min-height: calc(100vh - 80px);
-    overflow-x: hidden;
   }
 
   .leftSidebar {
     grid-area: leftcol;
     width: 100%;
     max-width: none;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    padding: clamp(12px, 3vw, 20px);
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
     position: static;
     height: auto;
-    align-items: flex-start;
+    align-items: stretch;
     display: flex;
     flex-direction: column;
-    gap: clamp(12px, 2vw, 16px);
+    gap: clamp(16px, 2.5vw, 24px);
     min-width: 0;
     position: relative;
   }
@@ -152,20 +151,21 @@
     grid-area: currencySection;
     display: block;
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    padding: clamp(12px, 3vw, 20px);
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
     position: static;
     height: auto;
     min-width: 0;
+    align-self: start;
   }
 
   .main {
     grid-area: main;
     padding: 0;
+    padding-top: clamp(16px, 2vw, 24px);
     width: 100%;
     min-width: 0;
-    overflow-x: hidden;
   }
 
   .fabButton {
@@ -181,10 +181,10 @@
 @media (min-width: 1280px) {
   .container {
     display: grid;
-    grid-template-columns: minmax(280px, 30%) 1fr;
+    grid-template-columns: minmax(320px, 380px) 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "leftcol main";
-    gap: clamp(40px, 5vw, 64px);
+    gap: 0;
     padding: clamp(24px, 4vw, 48px);
     align-items: start;
     min-height: calc(100vh - 80px);
@@ -199,40 +199,44 @@
     padding: 0;
     background: transparent;
     border-radius: 0;
+    padding: 0;
+    padding-right: clamp(20px, 3vw, 32px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     position: sticky;
     top: 0; /* sticky navbar üstten başlasın */
     height: fit-content;
-  }
-
-  .leftSidebar::after {
-    right: -45px; /* sağdan 2-3px içeride */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
   }
 
   .navSection {
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    padding: clamp(16px, 2vw, 24px);
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: clamp(20px, 3vw, 32px);
     min-width: 0;
   }
 
   .balanceSection {
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    padding: clamp(16px, 2vw, 24px);
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: clamp(20px, 3vw, 32px);
     min-width: 0;
   }
 
-  /* On desktop: currency section moves inside sidebar visually */
+  /* On desktop: currency section moves inside sidebar */
   .currencySection {
     display: block;
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    padding: clamp(16px, 2vw, 24px);
-    position: relative;
-    top: -260px;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    position: static;
     height: auto;
     min-width: 0;
     grid-area: unset;
@@ -240,7 +244,8 @@
 
   .main {
     grid-area: main;
-    padding: 0;
+    padding: 0 0 0 clamp(20px, 3vw, 40px);
+    padding-top: clamp(12px, 2vw, 16px);
     width: 100%;
     min-width: 0;
     overflow-x: hidden;
