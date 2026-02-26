@@ -1,12 +1,9 @@
-// src/components/transactions/TransactionsList.jsx
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import NoTransactions from "../NoTransactions/NoTransactions";
 import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
-import { deleteTransaction, fetchTransactions } from "../../../redux/transactions/operations";
-import { refreshCurrentUser } from "../../../features/auth/authOperations";
-import { toastSuccess, toastError } from "../../../utils/toast";
+import { deleteTransaction } from "../../../redux/transactions/operations";
 import css from "./TransactionsList.module.css";
 
 const TransactionsList = () => {
@@ -16,11 +13,11 @@ const TransactionsList = () => {
 
   const dispatch = useDispatch();
 
-  const items = useSelector((state) => state.transactions?.items);
-  const isLoading = useSelector((state) => state.transactions?.isLoading ?? false);
-  const error = useSelector((state) => state.transactions?.error ?? null);
-
-  const itemsList = items ?? [];
+  const transactions = useSelector((state) => state.transactions?.items || []);
+  const isLoading = useSelector(
+    (state) => state.transactions?.loading || false,
+  );
+  const error = useSelector((state) => state.transactions?.error || null);
 
   if (error) {
     return <div className={css.error}>Error loading transactions: {error}</div>;
@@ -36,38 +33,26 @@ const TransactionsList = () => {
     );
   }
 
-  // Filter out future transactions (include today)
-  // Ensure we round 'now' to the end of the current local day to prevent timezone offsets filtering out today's additions
-  const endOfToday = new Date();
-  endOfToday.setHours(23, 59, 59, 999);
-
-  const filteredTransactions = itemsList.filter((transaction) => {
-    const transDate = new Date(transaction.transactionDate || transaction.date);
-    return transDate.getTime() <= endOfToday.getTime();
-  });
-
   // Sort transactions by date
-  const sortedTransactions = [...filteredTransactions].sort((a, b) => {
-    const dateA = new Date(a.transactionDate || a.date);
-    const dateB = new Date(b.transactionDate || b.date);
+  const sortedTransactions = [...transactions].sort((a, b) => {
+    const dateA = new Date(a.transactionDate || a.date || 0);
+    const dateB = new Date(b.transactionDate || b.date || 0);
     return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
   });
 
-  const handleSortClick = () => {
+  const toggleSortOrder = () => {
     setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await dispatch(deleteTransaction(id)).unwrap();
-      toastSuccess("Transaction deleted successfully!");
-      // Refresh transactions and user balance
-      dispatch(fetchTransactions());
-      dispatch(refreshCurrentUser());
-    } catch (err) {
-      console.error("Failed to delete transaction:", err);
-      toastError(err?.message || "Error deleting transaction");
+  const handleDelete = (id) => {
+    if (
+      !window.confirm(
+        "Are you sure you want to permanently delete this transaction?",
+      )
+    ) {
+      return;
     }
+    dispatch(deleteTransaction(id));
   };
 
   const handleEditOpen = (transaction) => {
@@ -78,6 +63,10 @@ const TransactionsList = () => {
   const handleEditClose = () => {
     setSelectedTransaction(null);
     setIsEditModalOpen(false);
+  };
+
+  const handleSortClick = () => {
+    toggleSortOrder();
   };
 
   if (sortedTransactions.length === 0) {
@@ -110,15 +99,18 @@ const TransactionsList = () => {
               <th className={css.th}>Type</th>
               <th className={css.th}>Category</th>
               <th className={css.th}>Comment</th>
-              <th className={css.th}>Sum</th>
+              <th className={css.th}>Amount</th>
+              <th className={css.th}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {sortedTransactions.map((transaction) => (
               <TransactionsItem
-                key={transaction.id}
+                key={transaction.id || transaction._id}
                 transaction={transaction}
-                onDelete={() => handleDelete(transaction.id)}
+                onDelete={() =>
+                  handleDelete(transaction.id || transaction._id)
+                }
                 onEdit={() => handleEditOpen(transaction)}
               />
             ))}

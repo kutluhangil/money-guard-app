@@ -1,144 +1,131 @@
-/* Mobile-first: Transactions render as stacked cards using table markup
-   Rows (tr) and cells (td) are styled as block cards; on wider screens
-   they switch back to table layout. */
+/* ======================================================
+   CONTAINER
+   ====================================================== */
+
+.container {
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* ======================================================
+   TABLE WRAPPER
+   ====================================================== */
+
+.tableWrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Overlay loader */
+.tableOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}
+
+/* ======================================================
+   TABLE - MOBILE FIRST
+   ====================================================== */
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-family: var(--font-family-base);
+  color: var(--font-color-white);
 }
 
-/* Ensure table columns don't force horizontal overflow; make comments wrap */
-.table {
-  table-layout: fixed;
-}
-
-.th,
-.td {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.td .comment {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* header style when table layout active */
+/* Mobilde başlık gizli */
 .theadRow {
   display: none;
-  /* hide header on small screens */
 }
 
-/* Ensure no default borders */
-.th {
-  color: var(--color-main-text, #FBFBFB);
+/* ======================================================
+   SORT BUTTON
+   ====================================================== */
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
-.th {
-  color: white;
-  padding: 12px;
-  text-align: center;
-}
-
-.td {
-  display: block;
-  padding: 0;
-  /* inner cell padding handled by TransactionsItem styles */
+.sortButton {
+  background: transparent;
   border: none;
+  color: var(--font-color-white);
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s;
 }
 
-/* Table wrapper for desktop visuals */
-.tableWrapper {
-  width: 100%;
+.sortButton:hover {
+  opacity: 0.7;
 }
 
-/* On mobile, ensure the transactions area stacks and cards take full width */
-.transactions-table {
-  width: 100%;
+/* ======================================================
+   LOADING / ERROR
+   ====================================================== */
+
+.loading,
+.error {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 16px;
 }
 
-/* Controls row */
-.controlsRow {
-  padding: 8px;
+.error {
+  color: var(--red);
 }
+
+/* ======================================================
+   DESKTOP STYLES
+   ====================================================== */
 
 @media (min-width: 768px) {
-  .theadRow {
-    display: grid;
-    /* düzeltme yapılmıştır (kutluhan) kolon yapısı tasarıma göre sabitlendi (tablet) */
-    grid-template-columns: 100px 60px 140px 180px 1fr;
-    background: rgba(82, 59, 126, 0.6);
-    /* Brand header purple */
-    border-radius: 30px;
-    /* Highly rounded as per Figma */
-    color: white;
-    padding: 16px 16px;
-    margin-bottom: 15px;
-  }
-
-  .th {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    background: transparent;
-    text-align: left;
-    user-select: none;
-  }
-
-  .th:nth-child(5) {
-    justify-content: flex-end;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .table {
-    background: transparent;
-    display: block;
-    width: 100%;
+    margin-top: 69px;
   }
 
-  .table thead,
-  .table tbody,
-  .table th,
-  .table td {
-    display: block;
-    /* strip native table behaviors to match grid */
+  .theadRow {
+    display: table-row;
+    background-color: #523b7e99;
   }
 
-  .tableWrapper {
-    width: 100%;
-    max-height: 550px;
-    /* Introduce vertical scrolling */
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 8px;
-    /* Room for scrollbar */
+  .th {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 12px 24px;
+    text-align: center;
+    color: var(--font-color-white);
   }
 
-  /* Scrollbar styling for a premium look */
-  .tableWrapper::-webkit-scrollbar {
-    width: 4px;
+  .th:first-child {
+    text-align: left;
   }
 
-  .tableWrapper::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .tableWrapper::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+  .controls {
+    margin-bottom: 0;
+    margin-top: 40px;
   }
 }
+.amount-income {
+  color: var(--color-accent-teal);
+  font-weight: 600;
+}
 
-/* Desktop-specific - RESPONSIVE */
-@media (min-width: 1280px) {
-  .theadRow {
-    /* düzeltme yapılmıştır (kutluhan) kolon yapısı tasarıma göre sabitlendi (masaüstü) */
-    grid-template-columns: 130px 60px 160px 260px 1fr;
-    padding: 18px 20px;
-    margin-bottom: 20px;
-  }
+.amount-expense {
+  color: var(--color-accent-coral);
+  font-weight: 600;
 }
