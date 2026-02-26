@@ -29,7 +29,7 @@ const DashboardPage = () => {
     <div className={css.dashboardPage}>
       <Header />
 
-      <div className={css.container}>
+  <div className={`${css.container} ${isStatisticsPage ? css.statisticsMode : ""}`}>
         {/* Left Sidebar: Navigation + Balance + Chart (on Statistics tablet) */}
         <aside className={css.leftSidebar}>
           <div className={css.navSection}>
@@ -56,9 +56,16 @@ const DashboardPage = () => {
         </div>
 
         {/* Transactions / main content */}
-        <main className={css.main}>
-          <Outlet /> {/* HomeTab buraya render olur */}
-        </main>
+        {isStatisticsPage ? (
+          // In statistics mode we render the route content into the right-side stats area
+          <div className={css.statsArea}>
+            <Outlet />
+          </div>
+        ) : (
+          <main className={css.main}>
+            <Outlet /> {/* HomeTab buraya render olur */}
+          </main>
+        )}
       </div>
 
       {/* düzeltme yapılmıştır (kutluhan) redux state çakışmasından dolayı tek bir global artı butonu yapısına geçildi */}
