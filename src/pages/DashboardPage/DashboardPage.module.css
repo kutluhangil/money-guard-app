@@ -114,6 +114,15 @@
     min-height: calc(100vh - 80px);
   }
 
+  /* When viewing statistics we change the second row to place the
+     statistics table to the right of the left column (which contains
+     Navigation + Balance + Chart). */
+  .container.statisticsMode {
+    grid-template-areas:
+      "leftcol currencySection"
+      "leftcol statsArea";
+  }
+
   .leftSidebar {
     grid-area: leftcol;
     width: 100%;
@@ -175,6 +184,13 @@
     height: auto;
     min-width: 0;
     align-self: start;
+  }
+
+  /* Stats area (right column, second row) where StatisticsTab will render */
+  .statsArea {
+    grid-area: statsArea;
+    width: 100%;
+    min-width: 0;
   }
 
   .main {
