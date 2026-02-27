@@ -2,8 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch: {}
 
 permissions:
@@ -27,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # Use Node 20.x to satisfy engines required by some deps (vite, react-router, plugin-react)
+          # Use Node 20.x to satisfy engines required by some deps
           node-version: '20'
 
       - name: Install dependencies
@@ -45,7 +44,7 @@ jobs:
             echo "dist or dist/index.html missing - skipping 404 fallback"
           fi
 
-      - name: Debug: list dist contents
+      - name: Debug - list dist contents
         run: |
           echo "Dist contents:";
           ls -la dist || true;
@@ -55,7 +54,6 @@ jobs:
           head -n 20 dist/404.html || true;
 
       - name: Upload Pages artifact
-        # Use v3 to avoid deprecated actions/upload-artifact v3 dependency
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
