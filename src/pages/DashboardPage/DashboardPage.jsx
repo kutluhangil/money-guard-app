@@ -41,11 +41,7 @@ const DashboardPage = () => {
           {/* Tablet-only Chart: render inside the left sidebar so on tablet the chart sits under Balance */}
           {isStatisticsPage && (
             <div className={css.chartSectionTablet}>
-              <Suspense
-                fallback={
-                  <div style={{ width: '100%', maxWidth: 520, height: 333, background: '#f3f4f6', borderRadius: 8 }} />
-                }
-              >
+              <Suspense fallback={null}>
                 <Chart />
               </Suspense>
             </div>

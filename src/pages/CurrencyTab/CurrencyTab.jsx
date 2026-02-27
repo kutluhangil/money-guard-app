@@ -22,20 +22,13 @@ const CurrencyTab = () => {
     let mounted = true;
     (async () => {
       try {
-        const ChartJS = await import('chart.js');
-        // register only when loaded
-        ChartJS.register(
-          ChartJS.CategoryScale,
-          ChartJS.LinearScale,
-          ChartJS.PointElement,
-          ChartJS.LineElement,
-          ChartJS.Tooltip,
-          ChartJS.Filler,
-        );
+        // use the auto build which registers components for us
+        await import('chart.js/auto');
         const rc = await import('react-chartjs-2');
         if (mounted && rc && rc.Line) setLineComp(() => rc.Line);
-      } catch {
-        // swallow — we'll render nothing if charts fail to load
+      } catch (e) {
+        // swallow — chart will simply not render; warn to aid debugging
+        console.warn('Chart load failed', e);
       }
     })();
     return () => {
@@ -92,12 +85,17 @@ const CurrencyTab = () => {
         });
       }
 
+      // If API returned no rates we understand, leave `formatted` empty and
+      // render an empty state in the UI.
+
       localStorage.setItem(CACHE_KEY, JSON.stringify(formatted));
       localStorage.setItem(CACHE_TIME_KEY, now.toString());
 
       setRates(formatted);
     } catch (error) {
+      // On any fetch/parsing error, log and surface an error state
       console.error("Currency fetch error:", error);
+      setRates([]);
       setError("Unable to load currency rates");
     } finally {
       setIsLoading(false);
@@ -107,12 +105,15 @@ const CurrencyTab = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  // Always render the table/chart; if we have placeholder entries they'll render as "-"
+
   // 📈 Chart Data
   const chartData = {
     labels: ["USD Buy", "EUR Buy", "USD Sell", "EUR Sell"],
     datasets: [
       {
-        data: [rates[0]?.buy, rates[1]?.buy, rates[0]?.sell, rates[1]?.sell],
+        // Guard with 0 fallbacks so the chart can render even for placeholder data
+        data: [rates[0]?.buy ?? 0, rates[1]?.buy ?? 0, rates[0]?.sell ?? 0, rates[1]?.sell ?? 0],
         borderColor: "#FF868D",
         borderWidth: 2,
         fill: true,
@@ -161,18 +162,26 @@ const CurrencyTab = () => {
           <div>Sale</div>
         </div>
 
-        {rates.map((r) => (
-          <div className={styles.currencyRow} key={r.code}>
-            <div>{r.code}</div>
-            <div>{Number(r.buy).toFixed(2)}</div>
-            <div>{Number(r.sell).toFixed(2)}</div>
+        {rates.length === 0 ? (
+          <div className={styles.currencyRow} key="empty">
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
           </div>
-        ))}
+        ) : (
+          rates.map((r) => (
+            <div className={styles.currencyRow} key={r.code}>
+              <div>{r.code}</div>
+              <div>{r.buy != null ? Number(r.buy).toFixed(2) : '-'}</div>
+              <div>{r.sell != null ? Number(r.sell).toFixed(2) : '-'}</div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* 📊 Chart Alanı */}
       <div className={styles.chartContainer}>
-        {LineComp ? (
+        {LineComp && rates.length >= 2 ? (
           <LineComp ref={chartRef} data={chartData} options={chartOptions} />
         ) : (
           <div style={{ height: 120 }} />
