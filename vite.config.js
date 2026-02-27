@@ -17,9 +17,9 @@ export default defineConfig(() => {
   }
 
   return {
-    // When deploying to GitHub Pages under a repository (e.g. https://egemen-yilmaz.github.io/money-guard-app/)
-    // set the base path so built assets reference the correct subpath.
-    base: '/money-guard-app/',
+    // Vercel root-level deploy için base '/' olarak ayarlandı.
+    // GitHub Pages'e deploy edilecekse '/money-guard-app/' olarak değiştir.
+    base: '/',
     plugins,
     build: {
       // warn earlier while we iterate on chunking
