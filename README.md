@@ -205,22 +205,22 @@ money-guard/
 
 <p><strong>Desktop</strong></p>
 <p>
-  <img src="./public/GitHubImages/Desktop1.png" width="30%" />
-  <img src="./public/GitHubImages/Desktop2.png" width="30%" />
-  <img src="./public/GitHubImages/Desktop3.png" width="30%" />
+  <img src="./public/githubimages/Desktop1.png" width="30%" />
+  <img src="./public/githubimages/Desktop2.png" width="30%" />
+  <img src="./public/githubimages/Desktop3.png" width="30%" />
 </p>
 
 <p><strong>Tablet</strong></p>
 <p>
-  <img src="./public/GitHubImages/tablet-1.png" width="30%" />
-  <img src="./public/GitHubImages/tablet-2.png" width="30%" />
-  <img src="./public/GitHubImages/tablet2.png" width="30%" />
+  <img src="./public/githubimages/tablet-1.png" width="30%" />
+  <img src="./public/githubimages/tablet-2.png" width="30%" />
+  <img src="./public/githubimages/tablet2.png" width="30%" />
 </p>
 
 <p><strong>Mobile</strong></p>
 <p>
-  <img src="./public/GitHubImages/mobile-1.png" width="30%" />
-  <img src="./public/GitHubImages/mobile-2.png" width="30%" />
+  <img src="./public/githubimages/mobile-1.png" width="30%" />
+  <img src="./public/githubimages/mobile-2.png" width="30%" />
 </p>
 
 <hr />
